@@ -16,11 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton input_bin, input_dec, input_hex,
             output_bin, output_dec, output_hex;
 
-    /**
-     * 1 bin
-     * 2 dec
-     * 3 hex
-     */
     private HexDecimalTypes inputType = HexDecimalTypes.DEC;
     private HexDecimalTypes outputType = HexDecimalTypes.BIN;
     @Override
@@ -56,13 +51,8 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String inputStr = charSequence.toString().replaceAll("\n", "");
                 Log.d("onTextChanged", inputStr);
-//                if(inputStr.equals("")) {
-//
-//                }
                 String outputStr = convertHexDecimal(inputStr);
-
                 edit_output.setText(outputStr);
-
             }
 
             @Override
@@ -111,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     private String convertHexDecimal(String inputStr) {
         String outputStr = "";
         try {
@@ -120,14 +109,14 @@ public class MainActivity extends AppCompatActivity {
                 case BIN:
                     decInt = Integer.parseInt(inputStr, 2);
                     break;
+                default:
                 case DEC:
                     decInt = Integer.parseInt(inputStr);
                     break;
                 case HEX:
                     decInt = Integer.parseInt(inputStr, 16);
                     break;
-                default:
-                    decInt = Integer.parseInt(inputStr);
+//                    decInt = Integer.parseInt(inputStr);
             }
 
             switch(outputType) {
@@ -145,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-
         return outputStr;
     }
 }
